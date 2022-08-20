@@ -1,64 +1,68 @@
 <script>
-	import words from './words.json';
+	import FilteredWordsList from './FilteredWordList.svelte';
 
-	const MATCH_NOTHING = /(?!)/;
+	const { format } = new Intl.NumberFormat();
 
 	let pattern = '';
 
-	let re = MATCH_NOTHING;
-	$: {
-		if (pattern) {
-			try {
-				re = new RegExp(pattern);
-			} catch {
-				// postpone update on syntax error
-			}
+	/** @type {RegExp} */
+	let regexp;
+	/** @type {SyntaxError | undefined} */
+	let error;
+	$: try {
+		regexp = new RegExp(pattern, 'iu');
+		error = undefined;
+	} catch (e) {
+		// keep previous regexp on syntax error
+		if (e instanceof SyntaxError) {
+			error = e;
 		} else {
-			re = MATCH_NOTHING;
+			throw e;
 		}
 	}
-	$: filteredWords = words.filter((w) => re.test(w));
 </script>
 
 <svelte:head>
 	<title>Kitionary</title>
+	<meta
+		name="description"
+		content="A regular expression dictionary search for cheating at Wordle."
+	/>
 </svelte:head>
 
-<main>
-	<h1>Kitionary</h1>
-	<input bind:value={pattern} placeholder="search by regex" />
-	{#if pattern}
-		<p>{filteredWords.length} / {words.length}</p>
-		<ul>
-			{#each filteredWords.slice(0, 100) as word}
-				<li>
-					<a href={`https://en.wiktionary.org/wiki/${word}`}>{word}</a>
-				</li>
-			{/each}
-		</ul>
-	{/if}
+<main class="grid gap-3 p-3 text-center">
+	<h1 class="text-2xl font-black">Kitionary</h1>
+	<form
+		class="relative grid"
+		autocapitalize="off"
+		autocomplete="off"
+		spellcheck="false"
+	>
+		<input
+			class="border-b-2 p-1 text-center"
+			class:border-red-600={error}
+			placeholder="search by regex"
+			bind:value={pattern}
+		/>
+		{#if error}
+			<p
+				class="absolute top-full rounded-b bg-red-600 px-1 text-sm font-medium text-white shadow"
+			>
+				{error.message}
+			</p>
+		{/if}
+	</form>
+	{#await import('./words.json') then { default: words }}
+		{#if pattern === ''}
+			<p class="italic text-gray-500 tabular-nums font-light">
+				{format(words.length)} words loaded
+			</p>
+		{:else}
+			<FilteredWordsList
+				{words}
+				predicate={(word) => regexp.test(word)}
+				limit={500}
+			/>
+		{/if}
+	{/await}
 </main>
-
-<style>
-	main {
-		@apply grid place-content-center place-items-center gap-3 p-3;
-	}
-	h1 {
-		@apply text-2xl font-black;
-	}
-	input {
-		@apply border-b-2 text-center;
-	}
-	p {
-		@apply font-thin tabular-nums;
-	}
-	li {
-		@apply font-mono;
-	}
-	a {
-		@apply text-blue-600;
-	}
-	a:hover {
-		@apply text-blue-800 underline underline-offset-2;
-	}
-</style>
