@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const config = {
-	// Use @apply/theme() so don't scan components for classes.
-	content: ['src/**/*.html'],
+	content: ['src/**/*.{html,svelte}'],
 };
 
 module.exports = config;
