@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: '16.x'
           cache: npm
-      - name: Install project
+      - name: Install dependencies
         run: npm ci
       - name: Build
         run: npm run build
