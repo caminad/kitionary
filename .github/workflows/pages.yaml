@@ -33,6 +33,8 @@ jobs:
         with:
           node-version: '16.x'
           cache: npm
+      - name: Install project
+        run: npm ci
       - name: Build
         run: npm run build
       - name: Upload artifact
