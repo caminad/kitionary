@@ -41,6 +41,6 @@ jobs:
           node-version: '16.x'
           cache: npm
       - name: Install dependencies
-        run: npm ci && npx playwright install --with-deps
+        run: npm ci && npx playwright install --with-deps chromium
       - name: Test
         run: npm test
