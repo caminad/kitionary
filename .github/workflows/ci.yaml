@@ -14,9 +14,6 @@ concurrency:
 jobs:
   Lint:
     runs-on: ubuntu-latest
-    env:
-      # not needed for linting
-      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,7 +22,7 @@ jobs:
         with:
           node-version: '16.x'
           cache: npm
-      - name: Install project
+      - name: Install dependencies
         run: npm ci
       - name: Lint
         run: npm run lint
@@ -33,11 +30,8 @@ jobs:
         run: npm run check
 
   Test:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
-    env:
-      # opt into the hermetic install and place binaries in the local folder
-      # https://playwright.dev/docs/browsers#managing-browser-binaries-1
-      PLAYWRIGHT_BROWSERS_PATH: '0'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -46,9 +40,7 @@ jobs:
         with:
           node-version: '16.x'
           cache: npm
-      - name: Install project
-        run: npm ci
-      - name: Install Playwright
-        run: npx playwright install
+      - name: Install dependencies
+        run: npm ci && npx playwright install --with-deps
       - name: Test
         run: npm test
