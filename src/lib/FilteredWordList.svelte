@@ -24,11 +24,13 @@
 		<i class="text-sm text-gray-500"> of {format(words.length)}</i>
 	</p>
 	<ul
-		style="--character-length: {characterLength}ic"
-		class="grid grid-cols-[repeat(auto-fill,minmax(var(--character-length),1fr))] empty:hidden"
+		style="--word-length: calc({characterLength - 2}ch + 2ic)"
+		class="grid grid-cols-[repeat(auto-fill,minmax(var(--word-length),1fr))] gap-2 overflow-x-hidden empty:hidden"
 	>
 		{#each filtered_words.slice(0, limit) as word (word)}
-			<li class="text-center font-mono"><WiktionaryLink {word} /></li>
+			<li class="text-ellipsis break-words text-center font-mono">
+				<WiktionaryLink {word} />
+			</li>
 		{/each}
 	</ul>
 	{#if filtered_words.length > limit}
