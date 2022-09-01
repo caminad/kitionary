@@ -1,6 +1,6 @@
 <script>
 	import FilteredWordsList from '$lib/FilteredWordList.svelte';
-	import RegExpInput from '$lib/RegExpSearch.svelte';
+	import RegExpSearch from '$lib/RegExpSearch.svelte';
 	import { fetch_words } from '$lib/wiktionary_data';
 
 	let characterLength = 5;
@@ -18,7 +18,7 @@
 <main class="grid gap-3 p-3 text-center">
 	<h1 class="text-2xl font-black">Kitionary</h1>
 	<form
-		class="grid auto-cols-fr grid-flow-col gap-3"
+		class="grid auto-cols-fr gap-3 sm:grid-flow-col"
 		autocapitalize="off"
 		autocomplete="off"
 		spellcheck="false"
@@ -35,7 +35,7 @@
 				bind:value={characterLength}
 			/>
 		</label>
-		<RegExpInput bind:value={regexp} />
+		<RegExpSearch bind:value={regexp} />
 	</form>
 	{#await fetch_words({ characterLength })}
 		<p class="font-light italic text-gray-500">
