@@ -7,9 +7,6 @@ const config = {
 		paths: {
 			base: '/kitionary',
 		},
-		prerender: {
-			default: true,
-		},
 		trailingSlash: 'always',
 	},
 };
