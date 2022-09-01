@@ -8,14 +8,14 @@ test('index page has expected h1', async ({ page }) => {
 
 test('search works', async ({ page }) => {
 	await page.goto('/kitionary/');
-	const input = page.locator('input');
-	await input.focus();
-	await input.type('hel{2}o');
+	const search = page.locator('[type=search]');
+	await search.focus();
+	await search.type('hel{2}o');
 
-	const a = page.locator('li > a');
-	await expect(a).toBeVisible();
-	await expect(a).toHaveText('hello');
-	await expect(a).toHaveAttribute(
+	const link = page.locator('li > a');
+	await expect(link).toBeVisible();
+	await expect(link).toHaveText('hello');
+	await expect(link).toHaveAttribute(
 		'href',
 		'https://en.wiktionary.org/wiki/hello',
 	);

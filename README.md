@@ -1,6 +1,6 @@
 # Kitionary
 
-A regular expression dictionary search for cheating at Wordle. Built with SvelteKit and Tailwind CSS, words from <https://dumps.wikimedia.org/enwiktionary/latest/enwiktionary-latest-all-titles-in-ns0.gz>.
+A regular expression dictionary search for cheating at Wordle. Built with SvelteKit and Tailwind CSS, words from [caminad/wiktionary-data](https://github.com/caminad/wiktionary-data).
 
 ## Developing
 
