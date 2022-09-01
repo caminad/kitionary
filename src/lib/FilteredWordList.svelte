@@ -1,5 +1,5 @@
 <script>
-	import WiktionaryLink from './WiktionaryLink.svelte';
+	import WiktionaryLink from '$lib/WiktionaryLink.svelte';
 
 	const { format } = new Intl.NumberFormat();
 

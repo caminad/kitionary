@@ -1,5 +1,6 @@
 <script>
-	import FilteredWordsList from './FilteredWordList.svelte';
+	import { fetch_words } from '$lib/fetch_words';
+	import FilteredWordsList from '$lib/FilteredWordList.svelte';
 
 	const { format } = new Intl.NumberFormat();
 
@@ -52,7 +53,7 @@
 			</p>
 		{/if}
 	</form>
-	{#await import('./words.json') then { default: words }}
+	{#await fetch_words() then words}
 		{#if pattern === ''}
 			<p class="italic text-gray-500 tabular-nums font-light">
 				{format(words.length)} words loaded
