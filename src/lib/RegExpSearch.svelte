@@ -21,7 +21,7 @@
 
 <div class="relative grid">
 	<input
-		class="rounded border p-1 shadow-inner"
+		class="appearance-none rounded border p-1 shadow-inner"
 		class:border-red-600={error}
 		class:rounded-bl-none={error}
 		type="search"
@@ -30,7 +30,7 @@
 	/>
 	{#if error}
 		<p
-			class="absolute top-full max-w-[calc(100%-1rem)] rounded-b bg-red-600 px-1 text-sm font-medium text-white shadow"
+			class="absolute top-full mr-2 rounded-b bg-red-600 px-1 text-sm font-medium text-white shadow"
 		>
 			{error.message}
 		</p>
