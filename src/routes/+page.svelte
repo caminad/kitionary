@@ -1,26 +1,10 @@
 <script>
-	import { fetch_words } from '$lib/fetch_words';
 	import FilteredWordsList from '$lib/FilteredWordList.svelte';
+	import RegExpInput from '$lib/RegExpSearch.svelte';
+	import { fetch_words } from '$lib/wiktionary_data';
 
-	const { format } = new Intl.NumberFormat();
-
-	let pattern = '';
-
-	/** @type {RegExp} */
-	let regexp;
-	/** @type {SyntaxError | undefined} */
-	let error;
-	$: try {
-		regexp = new RegExp(pattern, 'iu');
-		error = undefined;
-	} catch (e) {
-		// keep previous regexp on syntax error
-		if (e instanceof SyntaxError) {
-			error = e;
-		} else {
-			throw e;
-		}
-	}
+	let characterLength = 5;
+	let regexp = /(?:)/;
 </script>
 
 <svelte:head>
@@ -34,36 +18,30 @@
 <main class="grid gap-3 p-3 text-center">
 	<h1 class="text-2xl font-black">Kitionary</h1>
 	<form
-		class="relative grid"
+		class="grid auto-cols-fr grid-flow-col gap-3"
 		autocapitalize="off"
 		autocomplete="off"
 		spellcheck="false"
 	>
-		<input
-			class="border-b-2 p-1 text-center"
-			class:border-red-600={error}
-			placeholder="search by regex"
-			bind:value={pattern}
-		/>
-		{#if error}
-			<p
-				class="absolute top-full rounded-b bg-red-600 px-1 text-sm font-medium text-white shadow"
-			>
-				{error.message}
-			</p>
-		{/if}
-	</form>
-	{#await fetch_words() then words}
-		{#if pattern === ''}
-			<p class="italic text-gray-500 tabular-nums font-light">
-				{format(words.length)} words loaded
-			</p>
-		{:else}
-			<FilteredWordsList
-				{words}
-				predicate={(word) => regexp.test(word)}
-				limit={500}
+		<label class="flex place-items-center gap-1">
+			Length
+			<input
+				class="flex-1 rounded border p-1 shadow-inner"
+				type="number"
+				min={1}
+				max={128}
+				step={1}
+				placeholder="characters"
+				bind:value={characterLength}
 			/>
-		{/if}
+		</label>
+		<RegExpInput bind:value={regexp} />
+	</form>
+	{#await fetch_words({ characterLength })}
+		<p class="font-light italic text-gray-500">
+			Loading {characterLength}-character words...
+		</p>
+	{:then words}
+		<FilteredWordsList {characterLength} {words} {regexp} />
 	{/await}
 </main>
