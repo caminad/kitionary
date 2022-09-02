@@ -17,7 +17,7 @@
 	"devDependencies": {
 		"@playwright/test": "1.25.1",
 		"@sveltejs/adapter-static": "1.0.0-next.41",
-		"@sveltejs/kit": "1.0.0-next.461",
+		"@sveltejs/kit": "1.0.0-next.463",
 		"autoprefixer": "10.4.8",
 		"eslint": "8.23.0",
 		"eslint-config-prettier": "8.5.0",
