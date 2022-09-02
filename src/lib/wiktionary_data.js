@@ -4,15 +4,15 @@ const BASE_URL = 'https://caminad.github.io/wiktionary-data/';
 const words_cache = new Map();
 
 /**
- * @param {{ characterLength: number }} opts
+ * @param {{ character_count: number }} opts
  * @returns {Promise<string[]>}
  */
 export async function fetch_words(opts) {
-	const cached = words_cache.get(opts.characterLength);
+	const cached = words_cache.get(opts.character_count);
 	if (cached) {
 		return cached;
 	}
-	const path = String(opts.characterLength).padStart(3, '0') + '.txt';
+	const path = String(opts.character_count).padStart(3, '0') + '.txt';
 	const res = await fetch(new URL(path, BASE_URL));
 	if (!res.ok) {
 		return [];
@@ -22,6 +22,6 @@ export async function fetch_words(opts) {
 	if (!words) {
 		return [];
 	}
-	words_cache.set(opts.characterLength, words);
+	words_cache.set(opts.character_count, words);
 	return words;
 }

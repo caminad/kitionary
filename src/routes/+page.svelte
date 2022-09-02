@@ -3,7 +3,7 @@
 	import RegExpSearch from '$lib/RegExpSearch.svelte';
 	import { fetch_words } from '$lib/wiktionary_data';
 
-	let characterLength = 5;
+	let character_count = 5;
 	let regexp = /(?:)/;
 </script>
 
@@ -32,16 +32,16 @@
 				max={128}
 				step={1}
 				placeholder="characters"
-				bind:value={characterLength}
+				bind:value={character_count}
 			/>
 		</label>
 		<RegExpSearch bind:value={regexp} />
 	</form>
-	{#await fetch_words({ characterLength })}
+	{#await fetch_words({ character_count })}
 		<p class="font-light italic text-gray-500">
-			Loading {characterLength}-character words...
+			Loading {character_count}-character words...
 		</p>
 	{:then words}
-		<FilteredWordsList {characterLength} {words} {regexp} />
+		<FilteredWordsList {character_count} {words} {regexp} />
 	{/await}
 </main>

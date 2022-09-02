@@ -4,13 +4,13 @@
 	const { format } = new Intl.NumberFormat();
 
 	/** @type {number} */
-	export let characterLength;
+	export let character_count;
 	/** @type {readonly string[]} */
 	export let words;
 	/** @type {RegExp} */
 	export let regexp;
 
-	$: limit = Math.floor(2048 / characterLength);
+	$: limit = Math.floor(2048 / character_count);
 	$: filtered_words = words.filter((word) => regexp.test(word));
 </script>
 
@@ -24,7 +24,7 @@
 		<i class="text-sm text-gray-500"> of {format(words.length)}</i>
 	</p>
 	<ul
-		style="--word-length: calc({characterLength - 2}ch + 2ic)"
+		style="--word-length: calc({character_count - 2}ch + 2ic)"
 		class="grid grid-cols-[repeat(auto-fill,minmax(var(--word-length),1fr))] gap-2 overflow-x-hidden empty:hidden"
 	>
 		{#each filtered_words.slice(0, limit) as word (word)}
