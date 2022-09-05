@@ -20,6 +20,7 @@ jobs:
       - uses: actions/setup-node@v3
         with: { node-version: lts/*, cache: pnpm }
       - run: pnpm install
+      - run: pnpm svelte-kit sync
       - run: pnpm lint
       - run: pnpm check
 
