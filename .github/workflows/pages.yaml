@@ -31,7 +31,7 @@ jobs:
       - run: pnpm install
       - uses: actions/configure-pages@v2
         with: { static_site_generator: sveltekit }
-      - run: pnpm build
+      - run: pnpm vite build
       - uses: actions/upload-pages-artifact@v1
         with: { path: build }
       - uses: actions/deploy-pages@v1

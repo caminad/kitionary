@@ -18,7 +18,7 @@ pnpm dev --open
 To create a production version of your app:
 
 ```bash
-pnpm build
+pnpm vite build
 ```
 
-You can preview the production build with `pnpm preview`.
+You can preview the production build with `pnpm vite preview`.

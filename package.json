@@ -4,14 +4,9 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": "vite build",
-		"check": "svelte-check --tsconfig ./jsconfig.json",
-		"check:watch": "svelte-check --tsconfig ./jsconfig.json --watch",
 		"dev": "vite dev",
 		"format": "prettier --write --plugin-search-dir=. .",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
-		"package": "svelte-kit package",
-		"preview": "vite preview",
 		"test": "playwright test"
 	},
 	"devDependencies": {
