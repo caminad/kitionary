@@ -22,7 +22,7 @@ jobs:
       - run: pnpm install
       - run: pnpm svelte-kit sync
       - run: pnpm lint
-      - run: pnpm check
+      - run: pnpm svelte-check
 
   Test:
     timeout-minutes: 5
