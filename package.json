@@ -12,7 +12,7 @@
 	"devDependencies": {
 		"@playwright/test": "1.25.2",
 		"@sveltejs/adapter-static": "1.0.0-next.43",
-		"@sveltejs/kit": "1.0.0-next.489",
+		"@sveltejs/kit": "1.0.0-next.490",
 		"autoprefixer": "10.4.11",
 		"eslint": "8.23.1",
 		"eslint-config-prettier": "8.5.0",
