@@ -13,7 +13,7 @@
 		"@playwright/test": "1.26.0",
 		"@sveltejs/adapter-static": "1.0.0-next.43",
 		"@sveltejs/kit": "1.0.0-next.491",
-		"autoprefixer": "10.4.11",
+		"autoprefixer": "10.4.12",
 		"eslint": "8.23.1",
 		"eslint-config-prettier": "8.5.0",
 		"eslint-plugin-svelte3": "4.0.0",
