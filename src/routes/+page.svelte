@@ -1,7 +1,7 @@
 <script>
-	import FilteredWordsList from '$lib/FilteredWordList.svelte';
-	import RegExpSearch from '$lib/RegExpSearch.svelte';
-	import { fetch_words } from '$lib/wiktionary_data';
+	import FilteredWordsList from "$lib/FilteredWordList.svelte";
+	import RegExpSearch from "$lib/RegExpSearch.svelte";
+	import { fetch_words } from "$lib/wiktionary_data";
 
 	let character_count = 5;
 	let regexp = /(?:)/;

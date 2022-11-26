@@ -1,5 +1,5 @@
 <script>
-	import WiktionaryLink from '$lib/WiktionaryLink.svelte';
+	import WiktionaryLink from "$lib/WiktionaryLink.svelte";
 
 	const { format } = new Intl.NumberFormat();
 
@@ -14,7 +14,7 @@
 	$: filtered_words = words.filter((word) => regexp.test(word));
 </script>
 
-{#if regexp.source === '(?:)'}
+{#if regexp.source === "(?:)"}
 	<p class="font-light italic tabular-nums text-gray-500">
 		{format(words.length)} words loaded
 	</p>
