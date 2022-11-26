@@ -5,10 +5,10 @@
 	/** @type {SyntaxError | undefined} */
 	let error;
 
-	let pattern = value.source === '(?:)' ? '' : value.source.replace(/_/g, ' ');
+	let pattern = value.source === "(?:)" ? "" : value.source.replace(/_/g, " ");
 
 	$: try {
-		value = new RegExp(pattern.replace(/ /g, '_'), 'iu');
+		value = new RegExp(pattern.replace(/ /g, "_"), "iu");
 		error = undefined;
 	} catch (e) {
 		if (e instanceof SyntaxError) {

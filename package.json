@@ -5,8 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"format": "prettier --write --plugin-search-dir=. .",
-		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
+		"format": "prettier --cache --plugin-search-dir=. --write .",
+		"lint": "prettier --cache --plugin-search-dir=. --check . && eslint .",
 		"test": "playwright test"
 	},
 	"devDependencies": {
@@ -15,10 +15,10 @@
 		"@sveltejs/kit": "1.0.0-next.561",
 		"autoprefixer": "10.4.13",
 		"eslint": "8.28.0",
-		"eslint-config-prettier": "8.5.0",
 		"eslint-plugin-svelte3": "4.0.0",
 		"postcss": "8.4.19",
 		"prettier": "2.8.0",
+		"prettier-plugin-svelte": "2.8.1",
 		"prettier-plugin-tailwindcss": "0.2.0",
 		"svelte": "3.53.1",
 		"svelte-check": "2.9.2",

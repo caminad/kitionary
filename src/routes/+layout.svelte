@@ -1,5 +1,5 @@
 <script>
-	import Footer from '$lib/Footer.svelte';
+	import Footer from "$lib/Footer.svelte";
 </script>
 
 <slot />

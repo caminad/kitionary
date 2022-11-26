@@ -1,4 +1,4 @@
-const BASE_URL = 'https://caminad.github.io/wiktionary-data/';
+const BASE_URL = "https://caminad.github.io/wiktionary-data/";
 
 /** @type {Map<number, string[]>} */
 const words_cache = new Map();
@@ -12,7 +12,7 @@ export async function fetch_words(opts) {
 	if (cached) {
 		return cached;
 	}
-	const path = String(opts.character_count).padStart(3, '0') + '.txt';
+	const path = String(opts.character_count).padStart(3, "0") + ".txt";
 	const res = await fetch(new URL(path, BASE_URL));
 	if (!res.ok) {
 		return [];

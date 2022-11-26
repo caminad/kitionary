@@ -1,6 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-const config = {
-	content: ['src/**/*.{html,svelte}'],
+/** @type {import("tailwindcss").Config} */
+const tailwindConfig = {
+	content: ["src/**/*.{html,svelte}"],
 };
 
-module.exports = config;
+module.exports = tailwindConfig;
