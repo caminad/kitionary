@@ -10,7 +10,7 @@
 		"test": "playwright test"
 	},
 	"devDependencies": {
-		"@playwright/test": "1.29.1",
+		"@playwright/test": "1.29.2",
 		"@sveltejs/adapter-static": "1.0.1",
 		"@sveltejs/kit": "1.0.5",
 		"autoprefixer": "10.4.13",
